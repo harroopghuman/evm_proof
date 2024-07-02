@@ -1,34 +1,53 @@
+# CREATE A TOKEN
 
-Overview
-In this project smart contract operates as a decentralized token management system with capabilities of token creation (minting) and removal (burning). It features public variables for token specifics, a mapping structure to monitor token balances, and methods to adjust token circulation.
+This Solidity program is a simple 'CREATE A TOKEN' program which demonstrates the basic syntax and functionality of the Solidity programming language. The purpose of this program is to make familiar to the one's who are new to Solidity and teaches how it works.
 
-Contract Features
-Token Name: Meta
-Token Abbreviation: mta
-Total Supply: 0 (initial state)
-Functionalities
-1. Mint Function
-The mint function augments the aggregate token supply and enhances the balance of a designated address.
+## Description
 
-function mint(address addr, uint val) public {
-    totsupply += val;
-    balances[addr] += val;
-}
-Parameters:
-addr: Address for token issuance.
-val: Quantity of tokens to mint.
-2. Burn Function
-The burn function diminishes the total token supply and reduces the balance of a specific address, contingent upon adequate token holdings.
+This program code is a simple contract written in Solidity, a programming language used for developing smart contracts on the Ethereum blockchain. The Solidity code provided defines a smart contract named MyToken. This program serves as a simple and straight forward introduction to Solidity programming, and can be used as a development for more complex projects in the future.
 
-function burn(address addr, uint val) public {
-    if (balances[addr] >= val) {
-        totsupply -= val;
-        balances[addr] -= val;
+## Getting Started
+
+### Executing program
+
+To run this program, you can use Remix, an online Solidity IDE. To get started, go to the Remix website at https://remix.ethereum.org/.
+
+Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., HelloWorld.sol). Copy and paste the following code into the file:
+
+// SPDX-License-Identifier:MIT
+pragma solidity 0.8.26;
+
+contract MyToken
+{
+    string public tokenName="BITCOIN";
+    string public tokenAbbrv="BTC";
+    uint public totalSupply=0;
+
+    mapping (address=> uint) public currentBalance;
+
+    function mint(address _address,uint _value)public
+    {
+        totalSupply+=_value;
+        currentBalance[_address] +=_value;
+    } 
+
+    function burn(address _address, uint _value)public
+    {
+        if(currentBalance[_address] >= _value)
+        {
+            totalSupply -= _value;
+            currentBalance[_address] -= _value;
+        }
     }
 }
-Parameters:
-addr: Address from which tokens are eradicated.
-val: Quantity of tokens to burn.
-Additional Details
-Both mint and burn operations modify the overall token supply and address balances as appropriate.
-The burn operation integrates a conditional check to confirm the address possesses sufficient tokens for removal.
+
+To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.25" (or another compatible version), and then click on the "Compile MyToken.sol" button.
+
+Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "MyToken" contract from the dropdown menu, and then click on the "Deploy" button.
+
+Once the contract is deployed, you can interact with it by calling the sayHello function. Click on the "MyToken" contract in the left-hand sidebar, and then click on the respective "mint" and "burn" function.Finally, click on the "transact" button to execute the function and check your currentBalance.
+
+## Authors
+
+Name = Harroop Singh
+Email-id = harroopghuman9537@gmail.com
